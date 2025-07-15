@@ -4,6 +4,9 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "start": "cosmos",
+    "vercel-build": "bun run build:site",
+    "build:site": "cosmos-export",
     "build": "tsup-node lib/TscircuitIframe.tsx --format esm --dts --clean"
   },
   "devDependencies": {
