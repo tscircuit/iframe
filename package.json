@@ -2,6 +2,9 @@
   "name": "@tscircuit/iframe",
   "main": "dist/TscircuitIframe.js",
   "version": "0.0.1",
+  "files": [
+    "dist"
+  ],
   "type": "module",
   "scripts": {
     "start": "cosmos",
