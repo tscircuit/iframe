@@ -1,10 +1,19 @@
 # @tscircuit/iframe
 
-Run [tscircuit code](https://github.com/tscircuit/tscircuit) or [Circuit JSON](https://github.com/tscircuit/circuit-json) inside an iframe
+Run [tscircuit code](https://github.com/tscircuit/tscircuit) or [Circuit JSON](https://github.com/tscircuit/circuit-json) inside an iframe. Extremely lightweight wrapper around the [tscircuit runframe iframe](https://github.com/tscircuit/runframe)
 
 [Online Playground](https://example-iframe.tscircuit.com)
 
 <img width="4052" height="2122" alt="image" src="https://github.com/user-attachments/assets/104a396d-8763-4bcd-bb4a-33efe8d7ad2a" />
+
+
+## Installation
+
+```
+bun add @tscircuit/iframe
+```
+
+## Usage
 
 
 ```tsx
