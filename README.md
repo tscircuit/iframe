@@ -11,6 +11,7 @@ Run [tscircuit code](https://github.com/tscircuit/tscircuit) or [Circuit JSON](h
 
 ```
 bun add @tscircuit/iframe
+# npm add @tscircuit/iframe
 ```
 
 ## Usage
