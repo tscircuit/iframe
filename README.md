@@ -18,6 +18,8 @@ bun add @tscircuit/iframe
 
 
 ```tsx
+import { TscircuitIframe } from "@tscircuit/iframe"
+
 const fsMap = {
   "index.ts": `
 import { PushButton } from "@tsci/seveibar.push-button"
