@@ -8,6 +8,7 @@
   "type": "module",
   "scripts": {
     "start": "cosmos",
+    "format": "biome format --write .",
     "vercel-build": "bun run build:site",
     "build:site": "cosmos-export",
     "build": "tsup-node lib/TscircuitIframe.tsx --format esm --dts --clean"
