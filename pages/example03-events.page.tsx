@@ -84,7 +84,7 @@ export default function ExampleWithEvents() {
   const recordEvent = (eventType: string, data: any) => {
     const timestamp = new Date().toLocaleTimeString()
     const payload = JSON.stringify(data, null, 2)
-    setEvents(prev => [...prev, { timestamp, eventType, payload }])
+    setEvents((prev) => [...prev, { timestamp, eventType, payload }])
   }
 
   const clearEvents = () => {
@@ -103,7 +103,14 @@ export default function ExampleWithEvents() {
         onEditEvent={(data) => recordEvent("edit_event", data)}
       />
       <div style={{ marginTop: 20 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            marginBottom: 10,
+          }}
+        >
           <span
             style={{
               fontFamily: "sans-serif",
@@ -127,7 +134,9 @@ export default function ExampleWithEvents() {
             Clear
           </button>
         </div>
-        <div style={{ maxHeight: 300, overflow: "auto", border: "1px solid #ddd" }}>
+        <div
+          style={{ maxHeight: 300, overflow: "auto", border: "1px solid #ddd" }}
+        >
           <table
             style={{
               borderCollapse: "collapse",
@@ -202,7 +211,8 @@ export default function ExampleWithEvents() {
                         padding: "8px",
                         verticalAlign: "top",
                         fontWeight: "bold",
-                        color: event.eventType === "error" ? "#d73a49" : "#0366d6",
+                        color:
+                          event.eventType === "error" ? "#d73a49" : "#0366d6",
                       }}
                     >
                       {event.eventType}
@@ -233,7 +243,8 @@ export default function ExampleWithEvents() {
               display: "block",
             }}
           >
-            Example with event recording - shows all events emitted by TscircuitIframe
+            Example with event recording - shows all events emitted by
+            TscircuitIframe
           </span>
           <div style={{ marginTop: 12, border: "1px solid #ddd" }}>
             <ShikiHighlighter
