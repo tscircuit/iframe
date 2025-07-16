@@ -63,20 +63,46 @@ export const TscircuitIframe = (runFrameProps: TscircuitIframeProps) => {
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       if (event.data?.runframe_type === "runframe_ready_to_receive") {
+        // Filter out functions from props to avoid DataCloneError
+        const cloneableProps = Object.fromEntries(
+          Object.entries({ ...runFrameProps, ...additionalProps }).filter(
+            ([_, value]) => typeof value !== "function",
+          ),
+        )
+
         iframeRef.current?.contentWindow?.postMessage(
           {
             runframe_type: "runframe_props_changed",
-            runframe_props: { ...runFrameProps, ...additionalProps },
+            runframe_props: cloneableProps,
           },
           "*",
         )
         setIsLoading(false)
       }
+
+      // Handle runframe events
+      if (event.data?.runframe_type === "runframe_event") {
+        const { type } = event.data.runframe_event
+
+        if (type === "error") {
+          runFrameProps.onError?.(
+            new Error(event.data.runframe_event.error_message),
+          )
+        } else if (type === "render_finished") {
+          runFrameProps.onRenderFinished?.(event.data.runframe_event)
+        } else if (type === "initial_render") {
+          runFrameProps.onInitialRender?.(event.data.runframe_event)
+        } else if (type === "render_started") {
+          runFrameProps.onRenderStarted?.()
+        } else if (type === "edit_event") {
+          runFrameProps.onEditEvent?.(event.data.runframe_event)
+        }
+      }
     }
 
     window.addEventListener("message", handleMessage)
     return () => window.removeEventListener("message", handleMessage)
-  }, [])
+  }, [runFrameProps])
 
   return (
     <div>

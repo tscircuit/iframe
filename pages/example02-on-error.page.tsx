@@ -1,3 +1,4 @@
+import { useState } from "react"
 import TscircuitIframe from "../lib/TscircuitIframe"
 
 const fsMap = {
@@ -51,23 +52,84 @@ export default () => {
   `,
 }
 
-export default () => (
-  <div>
-    <TscircuitIframe
-      fsMap={fsMap}
-      showRunButton={true}
-      onError={(error) => {
-        console.log("Error caught:", error)
-        alert(`Error: ${error.message || error}`)
-      }}
-    />
+export default function ExampleWithErrorTable() {
+  const [errors, setErrors] = useState<string[]>([])
+
+  const handleError = (error: any) => {
+    const message = error?.message || String(error)
+    setErrors((prev) => [...prev, message])
+    // Optionally, you can still log to console if desired
+    // console.log("Error caught:", error)
+    // alert(`Error: ${message}`)
+  }
+
+  return (
     <div>
-      <span style={{ fontFamily: "sans-serif", marginTop: 10 }}>
-        Example with error handling - contains invalid TSX that should trigger
-        onError callback
-      </span>
-      <pre>
-        {`
+      <TscircuitIframe
+        fsMap={fsMap}
+        showRunButton={true}
+        onError={handleError}
+      />
+      <div style={{ marginTop: 20 }}>
+        <span
+          style={{
+            fontFamily: "sans-serif",
+            marginBottom: 10,
+            display: "block",
+          }}
+        >
+          Example with error handling - contains invalid TSX that should trigger
+          onError callback
+        </span>
+        <table
+          style={{
+            borderCollapse: "collapse",
+            width: "100%",
+            marginTop: 10,
+            fontFamily: "monospace",
+            background: "#fafbfc",
+          }}
+        >
+          <thead>
+            <tr>
+              <th
+                style={{
+                  border: "1px solid #ddd",
+                  padding: "8px",
+                  background: "#f0f0f0",
+                  textAlign: "left",
+                }}
+              >
+                Errors Caught
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {errors.length === 0 ? (
+              <tr>
+                <td
+                  style={{
+                    border: "1px solid #ddd",
+                    padding: "8px",
+                    color: "#888",
+                  }}
+                >
+                  No errors yet.
+                </td>
+              </tr>
+            ) : (
+              errors.map((err, idx) => (
+                <tr key={idx}>
+                  <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                    {err}
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+        <pre style={{ marginTop: 20 }}>
+          {`
 const fsMap = {
   "index.ts": \`
 // ... valid code ...
@@ -85,12 +147,12 @@ const fsMap = {
   fsMap={fsMap} 
   showRunButton={true}
   onError={(error) => {
-    console.log("Error caught:", error)
-    alert(\`Error: \${error.message || error}\`)
+    // Add error to array and display in table
   }}
 />
-        `}
-      </pre>
+          `}
+        </pre>
+      </div>
     </div>
-  </div>
-)
+  )
+}
