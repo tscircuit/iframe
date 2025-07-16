@@ -81,7 +81,7 @@ export const TscircuitIframe = (runFrameProps: TscircuitIframeProps) => {
       }
 
       // Handle runframe events
-      if (event.data?.runframe_type === "runframe_event") {
+      if (event.data.runframe_event) {
         const { type } = event.data.runframe_event
 
         if (type === "error") {
