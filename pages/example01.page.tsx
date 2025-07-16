@@ -1,3 +1,4 @@
+import { ShikiHighlighter } from "react-shiki"
 import TscircuitIframe from "../lib/TscircuitIframe"
 
 const fsMap = {
@@ -44,16 +45,7 @@ export default () => {
   `,
 }
 
-export default () => (
-  <div>
-    <TscircuitIframe fsMap={fsMap} />
-    <div>
-      <span style={{ fontFamily: "sans-serif", marginTop: 10 }}>
-        Example usage:
-      </span>
-      <pre>
-        {`
-
+const codeExample = `
 const fsMap = {
   "index.ts": \`
 import { PushButton } from "@tsci/seveibar.push-button"
@@ -95,14 +87,27 @@ export default () => {
     </board>
   )
 }\`
-
 }
 
+<TscircuitIframe fsMap={fsMap} />
+`
+
 export default () => (
-  <TscircuitIframe fsMap={fsMap} />
-)
-        `}
-      </pre>
+  <div>
+    <TscircuitIframe fsMap={fsMap} />
+    <div>
+      <span style={{ fontFamily: "sans-serif", marginTop: 10 }}>
+        Example usage:
+      </span>
+      <div style={{ marginTop: 12, border: "1px solid #ddd" }}>
+        <ShikiHighlighter
+          language="tsx"
+          theme="github-light"
+          style={{ borderRadius: 6, fontSize: 14 }}
+        >
+          {codeExample}
+        </ShikiHighlighter>
+      </div>
     </div>
   </div>
 )
