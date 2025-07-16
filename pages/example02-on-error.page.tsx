@@ -1,3 +1,4 @@
+import { ShikiHighlighter } from "react-shiki"
 import { useState } from "react"
 import TscircuitIframe from "../lib/TscircuitIframe"
 
@@ -51,6 +52,29 @@ export default () => {
 }
   `,
 }
+
+const codeExample = `
+const fsMap = {
+  "index.ts": \`
+// ... valid code ...
+      
+{/* This will cause an error - invalid JSX */}
+<invalidComponent missingClosing="true"
+  <nested>
+    <malformed syntax />
+  </nested>
+/>
+\`
+}
+
+<TscircuitIframe 
+  fsMap={fsMap} 
+  showRunButton={true}
+  onError={(error) => {
+    // Add error to array and display in table
+  }}
+/>
+`
 
 export default function ExampleWithErrorTable() {
   const [errors, setErrors] = useState<string[]>([])
@@ -118,8 +142,8 @@ export default function ExampleWithErrorTable() {
                 </td>
               </tr>
             ) : (
-              errors.map((err, idx) => (
-                <tr key={idx}>
+              errors.map((err) => (
+                <tr key={err}>
                   <td style={{ border: "1px solid #ddd", padding: "8px" }}>
                     {err}
                   </td>
@@ -128,30 +152,15 @@ export default function ExampleWithErrorTable() {
             )}
           </tbody>
         </table>
-        <pre style={{ marginTop: 20 }}>
-          {`
-const fsMap = {
-  "index.ts": \`
-// ... valid code ...
-      
-{/* This will cause an error - invalid JSX */}
-<invalidComponent missingClosing="true"
-  <nested>
-    <malformed syntax />
-  </nested>
-/>
-\`
-}
-
-<TscircuitIframe 
-  fsMap={fsMap} 
-  showRunButton={true}
-  onError={(error) => {
-    // Add error to array and display in table
-  }}
-/>
-          `}
-        </pre>
+        <div style={{ marginTop: 12, border: "1px solid #ddd" }}>
+          <ShikiHighlighter
+            language="tsx"
+            theme="github-light"
+            style={{ borderRadius: 6, fontSize: 14 }}
+          >
+            {codeExample}
+          </ShikiHighlighter>
+        </div>
       </div>
     </div>
   )
