@@ -8,6 +8,7 @@
   "type": "module",
   "scripts": {
     "start": "cosmos",
+    "format": "biome format --write .",
     "vercel-build": "bun run build:site",
     "build:site": "cosmos-export",
     "build": "tsup-node lib/TscircuitIframe.tsx --format esm --dts --clean"
@@ -21,6 +22,7 @@
     "react-cosmos": "^7.0.0",
     "react-cosmos-plugin-vite": "^7.0.0",
     "react-dom": "^19.1.0",
+    "react-shiki": "^0.7.2",
     "tsup": "^8.5.0",
     "vite": "^7.0.4"
   },
