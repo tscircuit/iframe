@@ -5,6 +5,38 @@ export interface TscircuitIframeProps {
   entrypoint?: string
   code?: string
   height?: string | number
+
+  showRunButton?: boolean
+
+  /**
+   * Called when rendering is finished
+   */
+  onRenderFinished?: (params: { circuitJson: any }) => void
+
+  /**
+   * Called when the initial render is finished (fast)
+   */
+  onInitialRender?: (params: { circuitJson: any }) => void
+
+  /**
+   * Called when rendering is started
+   */
+  onRenderStarted?: () => void
+  /**
+   * Called when an error occurs
+   */
+  onError?: (error: Error) => void
+
+  /**
+   * Called when an edit event occurs
+   */
+  onEditEvent?: (editEvent: any) => void
+
+  /**
+   * Optional project URL whose pathname will be used when
+   * reporting autorouting bugs
+   */
+  projectUrl?: string
 }
 
 export const TscircuitIframe = (runFrameProps: TscircuitIframeProps) => {

@@ -6,7 +6,6 @@ Run [tscircuit code](https://github.com/tscircuit/tscircuit) or [Circuit JSON](h
 
 <img width="4052" height="2122" alt="image" src="https://github.com/user-attachments/assets/104a396d-8763-4bcd-bb4a-33efe8d7ad2a" />
 
-
 ## Installation
 
 ```
@@ -15,7 +14,6 @@ bun add @tscircuit/iframe
 ```
 
 ## Usage
-
 
 ```tsx
 import { TscircuitIframe } from "@tscircuit/iframe"
@@ -60,12 +58,12 @@ export default () => {
       <trace from=".LED .neg" to="net.GND" />
     </board>
   )
-}`
-
+}`,
 }
 
-export default () => (
-  <TscircuitIframe fsMap={fsMap} />
-)
+export default () => <TscircuitIframe fsMap={fsMap} />
 ```
 
+## API
+
+TODO
