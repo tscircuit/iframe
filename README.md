@@ -66,4 +66,18 @@ export default () => <TscircuitIframe fsMap={fsMap} />
 
 ## API
 
-TODO
+### `<TscircuitIframe />`
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `fsMap` | `Record<string, string>` | Map of filenames to file contents that will be executed in the iframe. |
+| `entrypoint` | `string` | Name of the entry file within `fsMap`. |
+| `code` | `string` | Convenience prop to run a single file. Equivalent to providing `fsMap` with `index.tsx`. |
+| `height` | `string \| number` | Height of the iframe. Defaults to `600`. |
+| `showRunButton` | `boolean` | Whether to display a run button inside the iframe. |
+| `onRenderFinished` | `(params: { circuitJson: any }) => void` | Called when rendering completes. |
+| `onInitialRender` | `(params: { circuitJson: any }) => void` | Called after the initial, fast render. |
+| `onRenderStarted` | `() => void` | Called when rendering begins. |
+| `onError` | `(error: Error) => void` | Called when an error occurs while running or rendering code. |
+| `onEditEvent` | `(editEvent: any) => void` | Called when the user performs an edit action. |
+| `projectUrl` | `string` | Optional project URL used when reporting autorouting issues. |
