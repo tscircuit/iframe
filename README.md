@@ -81,3 +81,5 @@ export default () => <TscircuitIframe fsMap={fsMap} />
 | `onError` | `(error: Error) => void` | Called when an error occurs while running or rendering code. |
 | `onEditEvent` | `(editEvent: any) => void` | Called when the user performs an edit action. |
 | `projectUrl` | `string` | Optional project URL used when reporting autorouting issues. |
+| `evalVersion` | `string` | Version of the tscircuit evaluator to use. Defaults to the latest release. |
+| `forceLatestEvalVersion` | `boolean` | If `true`, always use the latest evaluator, overriding `evalVersion`. Defaults to `true` when `evalVersion` is not provided. |
