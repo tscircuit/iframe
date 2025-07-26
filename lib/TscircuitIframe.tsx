@@ -37,13 +37,20 @@ export interface TscircuitIframeProps {
    * reporting autorouting bugs
    */
   projectUrl?: string
+
+  evalVersion?: string
+  forceLatestEvalVersion?: boolean
 }
 
 export const TscircuitIframe = (runFrameProps: TscircuitIframeProps) => {
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const [isLoading, setIsLoading] = useState(true)
 
-  let additionalProps = {}
+  let additionalProps: Partial<TscircuitIframeProps> = {
+    forceLatestEvalVersion:
+      runFrameProps.forceLatestEvalVersion ??
+      (runFrameProps.evalVersion ? undefined : true),
+  }
 
   if (runFrameProps.code) {
     additionalProps = {
